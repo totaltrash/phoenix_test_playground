@@ -12,7 +12,8 @@ defmodule MyApp.AccountsFixtures do
       attrs
       |> Enum.into(%{
         name: "some name",
-        secret: "some secret"
+        secret: "some secret",
+        email: "some@example.com"
       })
       |> MyApp.Accounts.create_user()
 

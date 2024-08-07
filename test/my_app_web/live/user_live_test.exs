@@ -4,9 +4,9 @@ defmodule MyAppWeb.UserLiveTest do
   import Phoenix.LiveViewTest
   import MyApp.AccountsFixtures
 
-  @create_attrs %{name: "some name", secret: "some secret"}
-  @update_attrs %{name: "some updated name", secret: "some updated secret"}
-  @invalid_attrs %{name: nil, secret: nil}
+  @create_attrs %{name: "some name", email: "someemail@example.com"}
+  @update_attrs %{name: "some updated name", email: "updatedemail@example.com"}
+  @invalid_attrs %{name: nil, email: nil}
 
   defp create_user(_) do
     user = user_fixture()

@@ -3,7 +3,10 @@ defmodule MyAppWeb.Feature.SmokeTest do
 
   test "admin can create user", %{conn: conn} do
     conn
-    |> visit("/")
-    |> assert_has("div", text: "Phoenix Framework")
+    |> visit("/users/new")
+    |> fill_in("Name", with: "Aragorn")
+    |> fill_in("Email", with: "aragorn@gondormail.com")
+    |> click_button("Save")
+    |> assert_has("table", text: "Aragorn")
   end
 end

@@ -20,7 +20,8 @@ defmodule MyAppWeb.UserLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:secret]} type="text" label="Secret" />
+        <.input field={@form[:email]} type="text" label="Email" />
+        <.input field={@form[:secret]} type="hidden" label="Secret" />
         <:actions>
           <.button phx-disable-with="Saving...">Save User</.button>
         </:actions>
@@ -41,6 +42,8 @@ defmodule MyAppWeb.UserLive.FormComponent do
 
   @impl true
   def handle_event("validate", %{"user" => user_params}, socket) do
+    # change the hidden secret field
+    user_params = Map.put(user_params, "secret", user_params["secret"] <> "z")
     changeset = Accounts.change_user(socket.assigns.user, user_params)
     {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
   end
